@@ -168,8 +168,8 @@ public class ChartView: NSView {
         let height = bounds.height
         let width = bounds.width
 
-        let step = { () -> Int in
-            let step = Int(1000 * 1000 / 8 / self.maxSize * height)
+        let step = { () -> CGFloat in
+            let step = 1000 * 1000 / 8 / self.maxSize * height
             return step < 1 ? 1 : step
         }()
 
@@ -180,9 +180,13 @@ public class ChartView: NSView {
         path.setLineDash(pattern, count: 2, phase: 0.0)
         path.lineWidth = 1
 
-        for index in stride(from: step, to: Int(height), by: step) {
-            path.move(to: NSPoint(x: 0, y: CGFloat(index) + 0.5))
-            path.line(to: NSPoint(x: width, y: CGFloat(index) + 0.5))
+        let steps = Int(height / step)
+
+        for index in 0...steps {
+            path.removeAllPoints()
+            let yPoint = step * CGFloat(index)
+            path.move(to: NSPoint(x: 0, y: yPoint + 0.5))
+            path.line(to: NSPoint(x: width, y: yPoint + 0.5))
             path.stroke()
         }
 
