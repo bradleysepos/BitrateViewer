@@ -29,12 +29,12 @@ class Document: NSDocument, ChartViewDataSource, ChartViewDelegate, NSWindowDele
         super.init()
     }
 
-    override class func autosavesInPlace() -> Bool {
+    override class var autosavesInPlace: Bool {
         return false
     }
 
-    override var windowNibName: String? {
-        return "Document"
+    override var windowNibName: NSNib.Name? {
+        return NSNib.Name(rawValue: "Document")
     }
 
     func windowDidResize(_ notification: Notification) {

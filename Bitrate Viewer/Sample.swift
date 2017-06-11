@@ -43,7 +43,7 @@ extension Sample {
         var timescale: CMTimeScale = 0
         samples.reserveCapacity(10000)
 
-        if let videoTrack = asset.tracks(withMediaType: AVMediaTypeVideo).first, videoTrack.canProvideSampleCursors {
+        if let videoTrack = asset.tracks(withMediaType: AVMediaType.video).first, videoTrack.canProvideSampleCursors {
             if let cursor = videoTrack.makeSampleCursor(presentationTimeStamp: kCMTimeZero) {
 
                 var timeStamp = CMTimeMake(0, cursor.currentSampleDuration.timescale)
@@ -98,7 +98,6 @@ extension Array where Element: DurationEquatable {
             if sliceDuration > durationInEach.value && from > 0 {
                 let trasformedValue = transform(self[startIndex ..< from])
                 result.append(trasformedValue)
-                //result += [trasformedValue]
                 sliceDuration = self[from].duration
                 startIndex = from
             }

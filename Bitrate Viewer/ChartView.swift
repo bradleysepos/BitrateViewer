@@ -47,9 +47,9 @@ public class ChartView: NSView {
         wantsLayer = true
 
         let trackingArea = NSTrackingArea(rect: bounds,
-                                          options: [NSTrackingAreaOptions.activeInKeyWindow,
-                                                    NSTrackingAreaOptions.inVisibleRect,
-                                                    NSTrackingAreaOptions.mouseMoved],
+                                          options: [NSTrackingArea.Options.activeInKeyWindow,
+                                                    NSTrackingArea.Options.inVisibleRect,
+                                                    NSTrackingArea.Options.mouseMoved],
                                           owner: self, userInfo: nil)
         addTrackingArea(trackingArea)
 
